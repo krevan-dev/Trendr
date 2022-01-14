@@ -29,6 +29,26 @@ class PostsService {
     await original.save()
     return original
   }
+
+  async like(updated) {
+    const original = await this.getById(updated.id)
+    if (original.toString() !== updated) {
+      throw new BadRequest('No like for you')
+    }
+    original.title = updated.title || original.title
+    await original.save()
+    return original
+  }
+
+  async dislike(updated) {
+    const original = await this.getById(updated.id)
+    if (original.toString() !== updated) {
+      throw new BadRequest('You wanted to dislike? Too bad.')
+    }
+    original.title = updated.title || original.title
+    await original.save()
+    return original
+  }
   
   async remove(postId, userId) {
     const original = await this.getById(postId)
@@ -37,6 +57,7 @@ class PostsService {
     }
     await dbContext.Posts.findOneAndRemove({ _id: postId })
   }
+
 }
 
 

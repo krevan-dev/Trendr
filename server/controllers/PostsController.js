@@ -12,6 +12,8 @@ export class PostsController extends BaseController {
       .use(Auth0Provider.getAuthorizedUserInfo)
       .post('', this.create)
       .put('/:id', this.edit)
+      .put('/:id/like', this.like)
+      .put('/:id/dislike',  this.dislike)
       .delete('/:id', this.remove)
       
   }
@@ -62,4 +64,27 @@ export class PostsController extends BaseController {
       next(error)
     }
   }
+
+  async like(res, req, next) {
+    try {
+      req.body = req.userInfo.id
+      req.body.id = req.params.id
+      const updated = await postsService.edit(req.body)
+      return res.send(updated)
+    } catch (error) {
+      next(error)
+     }
+  }
+  
+  async dislike(res, req, next) {
+    try {
+      req.body = res.userInfo.id
+      req.body.id = req.params.id
+      const updated = await postsService.edit(req.body)
+      return res.send(updated)
+    } catch (error) {
+      next(error)
+    }
+  }
+
 }

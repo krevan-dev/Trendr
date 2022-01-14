@@ -25,8 +25,19 @@ class CommentsService {
     if (original.creatorId.toString() !== updated.creatorId) {
       throw new BadRequest('Unable to edit')
     }
-    original.gifUrl
+    original.gifUrl = updated.gifUrl || original.gifUrl
+    await original.save()
+    return original
   }
+
+  async remove(commentId, userId) {
+    const original = await this.getById(commentId)
+    if (original.creatorId.toString() !== userId) {
+      throw new BadRequest('Dis no workee')
+    }
+    await dbContext.Posts.findOneAndRemove({_id: commentId})
+}
+
 }
 
 export const commentsService = new CommentsService()
