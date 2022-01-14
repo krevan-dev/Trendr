@@ -1,10 +1,11 @@
 export class ActivePost {
     constructor(data) {
+        this.postId = data.postId
         this.imgUrl = data.imgUrl
         this.title = data.title
         this.likes = data.likes
         this.dislikes = data.dislikes
-        this.time = ....
+        // this.time = ....
     }
     get ATemplate() {
         return `
