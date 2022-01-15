@@ -16,7 +16,7 @@ export class ActivePost {
               <div class="d-flex flex-column justify-content-between">
                 <button class="btn btn-success mdi mdi-thumb-up" onclick="app.activePostsController.likes('${this.id}')"></button>
                 <p>${this.likes}</p>
-                <button class="btn btn-primary mdi mdi-arrow-right-circle"></button>
+                <button class="btn btn-primary mdi mdi-arrow-right-circle" onclick="app.activePostsController.drawActivePost()"></button>
                 <button class="btn btn-danger mdi mdi-thumb-down" onclick="app.activePostsController.dislikes('${this.id}')"></button>
                 <p>${this.dislikes}</p>
               </div>
