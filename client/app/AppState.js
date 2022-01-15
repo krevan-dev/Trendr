@@ -1,4 +1,5 @@
 import { dev } from './env.js'
+import { ActivePost } from './Models/ActivePost.js'
 import { EventEmitter } from './Utils/EventEmitter.js'
 import { isValidProp } from './Utils/isValidProp.js'
 
@@ -8,9 +9,8 @@ class AppState extends EventEmitter {
   /** @type {import('./Models/Value').Value[]} */
   values = []
   socketData = []
-  activePost = [
-
-  ]
+  activePost = []
+  posts = []
 }
 
 export const ProxyState = new Proxy(new AppState(), {

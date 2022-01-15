@@ -5,7 +5,6 @@ export class ActivePost {
         this.title = data.title
         this.likes = data.likes
         this.dislikes = data.dislikes
-        // this.time = ....
     }
     get ATemplate() {
         return `

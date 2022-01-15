@@ -1,5 +1,6 @@
 import { ProxyState } from '../AppState.js'
 import { audience, clientId, domain } from '../env.js'
+import { activePostService } from '../Services/ActivePostService.js'
 import { AuthService } from '../Services/AuthService.js'
 import { logger } from '../Utils/Logger.js'
 
@@ -45,6 +46,7 @@ export class AuthController {
     AuthService.on(AuthService.AUTH_EVENTS.LOADED, drawUser)
     AuthService.on(AuthService.AUTH_EVENTS.LOADED, _drawAuthSettings)
     drawUser()
+    activePostService.getPosts()
   }
 
   async login() {
