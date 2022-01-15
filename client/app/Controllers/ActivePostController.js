@@ -14,6 +14,14 @@ export class ActivePostsController {
         activePostService.getPost()
     }
 
+    async getAll() {
+        try {
+            await activePostService.getPost()
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
     async addPost(postId) {
         try {
             const addedPost = await activePostService.addPost(postId)

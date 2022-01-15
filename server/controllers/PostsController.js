@@ -1,5 +1,5 @@
 import { Auth0Provider } from "@bcwdev/auth0provider";
-import { dbContext } from "../db/DbContext";
+import { commentsService } from "../services/CommentsService";
 import { postsService } from "../services/PostsService";
 import BaseController from "../utils/BaseController";
 
@@ -9,31 +9,42 @@ export class PostsController extends BaseController {
     this.router
       .get('', this.getAll)
       .get('/:id', this.getById)
+      // get by relationship
+      .get('/:id/comments', this.getCommentsByPostId)
       .use(Auth0Provider.getAuthorizedUserInfo)
       .post('', this.create)
       .put('/:id', this.edit)
       .put('/:id/like', this.like)
-      .put('/:id/dislike',  this.dislike)
+      .put('/:id/dislike', this.dislike)
       .delete('/:id', this.remove)
-      
+
   }
   async getAll(req, res, next) {
     try {
       const posts = await postsService.getAll()
       return res.send(posts)
-  } catch (error) {
+    } catch (error) {
       next(error)
+    }
   }
-}
 
   async getById(req, res, next) {
-  try {
-    const post = await postsService.getById(req.params.id)
-    return res.send(post)
-  } catch (error) {
-    next(error)
+    try {
+      const post = await postsService.getById(req.params.id)
+      return res.send(post)
+    } catch (error) {
+      next(error)
+    }
   }
-}
+
+  async getCommentsByPostId(req, res, next) {
+    try {
+      const comments = await commentsService.getAll({ postId: req.params.id })
+      return res.send(comments)
+    } catch (error) {
+      next(error)
+    }
+  }
 
   async create(req, res, next) {
     try {
@@ -46,14 +57,14 @@ export class PostsController extends BaseController {
   }
 
   async edit(req, res, next) {
-  try {
-    req.body.creatorId = req.userInfo.id
-    req.body.id = req.params.id
-    const updated = await postsService.edit(req.body)
-    return res.send(updated)
-  } catch (error) {
-    next(error)
-  }
+    try {
+      req.body.creatorId = req.userInfo.id
+      req.body.id = req.params.id
+      const updated = await postsService.edit(req.body)
+      return res.send(updated)
+    } catch (error) {
+      next(error)
+    }
   }
 
   async remove(req, res, next) {
@@ -73,7 +84,7 @@ export class PostsController extends BaseController {
       next(error)
     }
   }
-  
+
   async dislike(req, res, next) {
     try {
       const updated = await postsService.dislike(req.params.id, req.userInfo.id)

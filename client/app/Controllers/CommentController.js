@@ -6,6 +6,7 @@ function drawComments() {
     let template = ''
     ProxyState.comments.forEach(c => { template += c.CTemplate })
     document.getElementById('comms').innerHTML = template
+    bootstrap.Offcanvas.getOrCreateInstance(document.getElementById('offcanvasRight')).toggle()
 }
 
 export class CommentsController {
@@ -24,6 +25,14 @@ export class CommentsController {
     async removeComment(postId) {
         try {
             const removedComment = await commentsService.removeComment(postId)
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
+    async getComments(postId) {
+        try {
+            await commentsService.getPostComments(postId)
         } catch (error) {
             console.log(error)
         }

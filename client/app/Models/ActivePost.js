@@ -6,6 +6,7 @@ export class ActivePost {
     this.title = data.title
     this.likes = data.likes
     this.dislikes = data.dislikes
+    this.createdAt = data.createdAt
   }
   get ATemplate() {
     return `
@@ -14,7 +15,8 @@ export class ActivePost {
               <img src="${this.imgUrl}" alt="${this.title}" class="mx-3 align-items-center" width="60%">
               <div class="d-flex flex-column justify-content-between">
                 <button class="btn btn-success mdi mdi-thumb-up" onclick="app.activePostsController.likes('${this.id}')"></button>
-                <p class="text-center">${this.likes}</p>
+                <p>${this.likes}</p>
+                <button class="btn btn-primary mdi mdi-arrow-right-circle" onclick="app.activePostsController.getAll()"></button>
                 <button class="btn btn-danger mdi mdi-thumb-down" onclick="app.activePostsController.dislikes('${this.id}')"></button>
                 <p class="text-center">${this.dislikes}</p>
               </div>
@@ -28,8 +30,18 @@ export class ActivePost {
                 <div>
                 </div>
               </div>
-            </div>            
+            </div>
+            <div class="row card-footer">
+              <div class="mx-3 p-3 justify-content-between col-12 d-flex">${this.Time} 
+              <button class="btn btn-primary mx-5" onclick="app.commentsController.getComments('${this.id}')">COMMENTS</button>
+              </div>
+            </div>
           </div>
         `
+  }
+
+  get Time() {
+    // @ts-ignore
+    return moment(this.createdAt).startOf('hour').fromNow()
   }
 }

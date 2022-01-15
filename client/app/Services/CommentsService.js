@@ -3,8 +3,8 @@ import { Comment } from "../Models/Comment.js";
 import { api } from "./AxiosService.js";
 
 class CommentsService {
-    async getPostComments() {
-        const res = await api.get('api/comments')
+    async getPostComments(postId) {
+        const res = await api.get(`api/posts/${postId}/comments`)
         ProxyState.comments = res.data.map(c => new Comment(c))
         console.log('ProxyState.getcomment', ProxyState.comments)
     }

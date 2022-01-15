@@ -4,9 +4,11 @@ import { BadRequest } from '../utils/Errors'
 class PostsService {
   async getAll() {
     const posts = await dbContext.Posts.find().populate('creator')
-    return posts
+    // const totalPosts = await dbContext.Posts.countDocuments({})
+    const randomPost = posts[Math.floor(Math.random() * posts.length)]
+    return [randomPost]
   }
-  
+
   async getById(id) {
     const post = await dbContext.Posts.findById(id).populate('creator')
     if (!post) {
@@ -14,12 +16,12 @@ class PostsService {
     }
     return post
   }
-  
+
   async create(body) {
     const post = await dbContext.Posts.create(body)
     return body
   }
-  
+
   async edit(updated) {
     const original = await this.getById(updated.id)
     if (original.creatorId.toString() !== updated.creatorId) {
@@ -43,7 +45,7 @@ class PostsService {
     await original.save()
     return original
   }
-  
+
   async remove(postId, userId) {
     const original = await this.getById(postId)
     if (original.creatorId.toString() !== userId) {
