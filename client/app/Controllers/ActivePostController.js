@@ -1,16 +1,11 @@
 import { ProxyState } from "../AppState.js";
 import { activePostService } from "../Services/ActivePostService.js";
-import { postApi } from "../Services/AxiosService.js";
 
 
 function drawActivePost() {
     let template = ''
     ProxyState.activePost.forEach(p => { template += p.ATemplate })
     document.getElementById('acpost').innerHTML = template
-}
-
-function likes() {
-
 }
 
 export class ActivePostsController {
@@ -32,6 +27,14 @@ export class ActivePostsController {
         try {
             const removedPost = await activePostService.removePost(postId)
             // TODO SWEET ALERT
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
+    async likes(id) {
+        try {
+            await activePostService.likes(id)
         } catch (error) {
             console.log(error)
         }

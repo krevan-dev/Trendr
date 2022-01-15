@@ -65,20 +65,18 @@ export class PostsController extends BaseController {
     }
   }
 
-  async like(res, req, next) {
+  async like(req, res, next) {
     try {
-      req.body = req.userInfo.id
-      req.body.id = req.params.id
-      const updated = await postsService.edit(req.body)
+      const updated = await postsService.like(req.params.id, req.userInfo.id)
       return res.send(updated)
     } catch (error) {
       next(error)
     }
   }
   
-  async dislike(res, req, next) {
+  async dislike(req, res, next) {
     try {
-      req.body = res.userInfo.id
+      req.body = req.userInfo.id
       req.body.id = req.params.id
       const updated = await postsService.edit(req.body)
       return res.send(updated)
