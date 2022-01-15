@@ -10,6 +10,7 @@ class AppState extends EventEmitter {
   values = []
   socketData = []
   activePost = []
+  comments = {}
 }
 
 export const ProxyState = new Proxy(new AppState(), {
