@@ -6,9 +6,9 @@ export const PostSchema = new Schema(
   {
     title: { type: String, required: true },
     imgUrl: { type: String, required: true },
-    likes: { type: Number },
-    dislikes: { type: Number },
-    // voted: {type: Boolean, },
+    likes: { type: Number, default: 0 },
+    dislikes: { type: Number, default: 0 },
+    voted: { type: Boolean, default: false},
     creatorId: { type: ObjectId, ref: 'Profile', required: true }
   },
   { timestamps: true, toJSON: { virtuals: true } }
