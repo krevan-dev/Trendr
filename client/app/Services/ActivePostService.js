@@ -24,24 +24,15 @@ class ActivePostsService {
         return new ActivePost(res.data)
     }
 
-    async getPosts() {
+    async getPost() {
         try {
-            const localData = JSON.parse(localStorage.getItem('postData'))
-            if (localData) {
-                ProxyState.posts = localData.posts.map(p => new Post(p))
-            } else {
-                const res = await postApi.get('posts')
-                localStorage.setItem('postData', JSON.stringify({
-                    posts: res.data.body.posts
-                }))
-                ProxyState.posts = res.data.body.map(p => new Post(p))
-            }
-            console.log('Posts array after localstorage', ProxyState.posts)
+            const res = await postApi.get('posts')
+            console.log(res.data)
+            ProxyState.activePost = res.data.map(p => new ActivePost(p))
         } catch (error) {
             console.log(error)
         }
     }
-
 }
 
 export const activePostService = new ActivePostsService()

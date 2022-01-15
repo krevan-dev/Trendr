@@ -46,7 +46,6 @@ export class AuthController {
     AuthService.on(AuthService.AUTH_EVENTS.LOADED, drawUser)
     AuthService.on(AuthService.AUTH_EVENTS.LOADED, _drawAuthSettings)
     drawUser()
-    activePostService.getPosts()
   }
 
   async login() {

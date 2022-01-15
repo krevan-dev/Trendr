@@ -1,5 +1,6 @@
 import { ProxyState } from "../AppState.js";
 import { activePostService } from "../Services/ActivePostService.js";
+import { buttonsService } from "../Services/ButtonsService.js";
 
 
 function drawActivePost() {
@@ -8,10 +9,16 @@ function drawActivePost() {
     document.getElementById('acpost').innerHTML = template
 }
 
+function likes() {
+    let template = ''
+    likes++
+    document.getElementById('')
+}
+
 export class ActivePostsController {
     constructor() {
         ProxyState.on('activePost', drawActivePost)
-        activePostService.getPosts()
+        activePostService.getPost()
     }
 
     async addPost(postId) {
@@ -31,4 +38,13 @@ export class ActivePostsController {
             console.log(error)
         }
     }
+
+    async likes(like) {
+        try {
+            const like = await buttonsService.likes(like)
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
 }

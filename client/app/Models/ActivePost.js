@@ -1,5 +1,6 @@
 export class ActivePost {
     constructor(data) {
+        this.profile = data.creator.picture
         this.postId = data.postId
         this.imgUrl = data.imgUrl
         this.title = data.title
@@ -23,7 +24,7 @@ export class ActivePost {
             <div class="d-flex justify-content-center align-items-center card-body">
               <div class="row">
                 <div class="col-12">
-                  <p class="mx-3"><b>${this.profile}:</b> ${this.title}</p>
+                <img src="${this.profile}" alt"" class="m-2" width="15%"> <p>${this.title}</p>
                 </div>
               </div>
             </div>
