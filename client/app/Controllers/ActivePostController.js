@@ -1,5 +1,6 @@
 import { ProxyState } from "../AppState.js";
 import { activePostService } from "../Services/ActivePostService.js";
+import { postApi } from "../Services/AxiosService.js";
 
 
 function drawActivePost() {
@@ -31,14 +32,6 @@ export class ActivePostsController {
         try {
             const removedPost = await activePostService.removePost(postId)
             // TODO SWEET ALERT
-        } catch (error) {
-            console.log(error)
-        }
-    }
-
-    async likes(like) {
-        try {
-            const like = await buttonsService.likes(like)
         } catch (error) {
             console.log(error)
         }
