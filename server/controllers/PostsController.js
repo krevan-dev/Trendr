@@ -17,16 +17,16 @@ export class PostsController extends BaseController {
       .delete('/:id', this.remove)
       
   }
- async getAll(req, res, next) {
+  async getAll(req, res, next) {
     try {
       const posts = await postsService.getAll()
       return res.send(posts)
-   } catch (error) {
-     next(error)
+  } catch (error) {
+      next(error)
   }
 }
 
- async getById(req, res, next) {
+  async getById(req, res, next) {
   try {
     const post = await postsService.getById(req.params.id)
     return res.send(post)
@@ -45,7 +45,7 @@ export class PostsController extends BaseController {
     }
   }
 
- async edit(req, res, next) {
+  async edit(req, res, next) {
   try {
     req.body.creatorId = req.userInfo.id
     req.body.id = req.params.id
@@ -73,7 +73,7 @@ export class PostsController extends BaseController {
       return res.send(updated)
     } catch (error) {
       next(error)
-     }
+    }
   }
   
   async dislike(res, req, next) {
