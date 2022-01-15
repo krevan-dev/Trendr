@@ -5,7 +5,7 @@ import { commentsService } from "../Services/CommentsService.js";
 
 function drawComments() {
     let template = ''
-    ProxyState.comment.forEach(c => { template += c.CTemplate })
+    ProxyState.comments.forEach(c => { template += c.CTemplate })
     document.getElementById('comms').innerHTML = template
 }
 
