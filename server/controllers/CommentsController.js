@@ -13,11 +13,7 @@ export class CommentsController extends BaseController {
       .use(Auth0Provider.getAuthorizedUserInfo)
       .post('', this.create)
       .put('/:id', this.edit)
-<<<<<<< HEAD
-    //     .delete('/:id', this.remove)
-=======
       .delete('/:id', this.remove)
->>>>>>> 1aff4ef85015302c8633ffced46d5ac7a7b8b244
   }
 
 
