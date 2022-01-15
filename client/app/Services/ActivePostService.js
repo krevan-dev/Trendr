@@ -33,6 +33,10 @@ class ActivePostsService {
             console.log(error)
         }
     }
+
+    async like() {
+
+    }
 }
 
 export const activePostService = new ActivePostsService()
