@@ -10,9 +10,7 @@ function drawActivePost() {
 }
 
 function likes() {
-    let template = ''
-    likes++
-    document.getElementById('')
+
 }
 
 export class ActivePostsController {
