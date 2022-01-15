@@ -12,7 +12,6 @@ export class ActivePost {
     return `
         <div class="card p-4 border border-primary border-5">
             <div class="d-flex justify-content-center align-items-center">
-              <button class="btn btn-primary mdi mdi-arrow-left-circle"></button>
               <img src="${this.imgUrl}" alt="${this.title}" class="mx-3 align-items-center" width="60%">
               <div class="d-flex flex-column justify-content-between">
                 <button class="btn btn-success mdi mdi-thumb-up" onclick="app.activePostsController.likes('${this.id}')"></button>
