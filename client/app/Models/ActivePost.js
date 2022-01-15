@@ -1,7 +1,7 @@
 export class ActivePost {
     constructor(data) {
         this.profile = data.creator.picture
-        this.postId = data.postId
+        this.id = data.id
         this.imgUrl = data.imgUrl
         this.title = data.title
         this.likes = data.likes
@@ -14,7 +14,7 @@ export class ActivePost {
               <button class="btn btn-primary mdi mdi-arrow-left-circle"></button>
               <img src="${this.imgUrl}" alt="${this.title}" class="mx-3 align-items-center" width="60%">
               <div class="d-flex flex-column justify-content-between">
-                <button class="btn btn-success mdi mdi-thumb-up"></button>
+                <button class="btn btn-success mdi mdi-thumb-up" onclick="app.activePostsController.likes('${this.id}')"></button>
                 <p>${this.likes}</p>
                 <button class="btn btn-primary mdi mdi-arrow-right-circle"></button>
                 <button class="btn btn-danger mdi mdi-thumb-down"></button>

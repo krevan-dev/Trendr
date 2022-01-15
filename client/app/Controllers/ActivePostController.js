@@ -1,16 +1,11 @@
 import { ProxyState } from "../AppState.js";
 import { activePostService } from "../Services/ActivePostService.js";
-import { buttonsService } from "../Services/ButtonsService.js";
 
 
 function drawActivePost() {
     let template = ''
     ProxyState.activePost.forEach(p => { template += p.ATemplate })
     document.getElementById('acpost').innerHTML = template
-}
-
-function likes() {
-
 }
 
 export class ActivePostsController {
@@ -37,9 +32,9 @@ export class ActivePostsController {
         }
     }
 
-    async likes(like) {
+    async likes(id) {
         try {
-            const like = await buttonsService.likes(like)
+            await activePostService.likes(id)
         } catch (error) {
             console.log(error)
         }

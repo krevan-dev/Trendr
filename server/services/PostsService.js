@@ -30,12 +30,9 @@ class PostsService {
     return original
   }
 
-  async like(updated) {
-    const original = await this.getById(updated.id)
-    if (original.toString() !== updated) {
-      throw new BadRequest('No like for you')
-    }
-    original.title = updated.title || original.title
+  async like(postId, creatorId) {
+    const original = await this.getById(postId)
+    original.likes++
     await original.save()
     return original
   }
@@ -45,7 +42,7 @@ class PostsService {
     if (original.toString() !== updated) {
       throw new BadRequest('You wanted to dislike? Too bad.')
     }
-    original.title = updated.title || original.title
+    original.dislikes = updated.dislikes || original.dislikes
     await original.save()
     return original
   }
