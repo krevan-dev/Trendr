@@ -1,5 +1,4 @@
 import { ProxyState } from "../AppState.js";
-import { postApi } from "../Services/AxiosService.js";
 import { commentsService } from "../Services/CommentsService.js";
 
 
