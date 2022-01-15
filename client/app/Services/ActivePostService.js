@@ -9,10 +9,9 @@ class ActivePostsService {
         console.log('ProxyState.activePost', ProxyState.activePost)
     }
 
-    async addPost(postId) {
-        const foundPost = ProxyState.activePost.find(p => p.postId === postId)
-        const res = await api.post('api/posts', foundPost)
-        ProxyState.activePost = [...ProxyState.activePost, new ActivePost(res.data)]
+    async addPost(newPost) {
+        const res = await api.post('api/posts', newPost)
+        ProxyState.activePost = [new ActivePost(res.data), ...ProxyState.activePost]
         console.log('ProxyState.activePost', ProxyState.activePost)
         return new ActivePost(res.data)
     }

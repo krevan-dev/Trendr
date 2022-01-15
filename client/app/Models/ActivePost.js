@@ -1,6 +1,6 @@
 export class ActivePost {
   constructor(data) {
-    this.profile = data.creator.picture
+    this.profile = data.creator?.picture
     this.id = data.id
     this.imgUrl = data.imgUrl
     this.title = data.title

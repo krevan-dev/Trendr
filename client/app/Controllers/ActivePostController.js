@@ -22,9 +22,19 @@ export class ActivePostsController {
         }
     }
 
-    async addPost(postId) {
+    async addPost() {
         try {
-            const addedPost = await activePostService.addPost(postId)
+            window.event.preventDefault();
+            let form = window.event.target;
+            const newPost = {
+                title: form.postTitle.value,
+                imgUrl: form.postContent.value
+            }
+            await activePostService.addPost(newPost)
+            form.reset()
+            console.log("close");
+            bootstrap.Modal.getOrCreateInstance(document.getElementById('exampleModal')).hide()
+            console.log("close2");
             // TODO sweet alert added post
         } catch (error) {
             console.log(error)

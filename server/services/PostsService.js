@@ -18,7 +18,7 @@ class PostsService {
   }
 
   async create(body) {
-    const post = await dbContext.Posts.create(body)
+    await dbContext.Posts.create(body)
     return body
   }
 
