@@ -8,7 +8,7 @@ class ActivePostsService {
         ProxyState.activePost = res.data.map(p => new ActivePost(p))
         console.log('ProxyState.activePost', ProxyState.activePost)
     }
-    
+
     async addPost(postId) {
         const foundPost = ProxyState.activePost.find(p => p.postId === postId)
         const res = await api.post('api/posts', foundPost)
@@ -16,14 +16,14 @@ class ActivePostsService {
         console.log('ProxyState.activePost', ProxyState.activePost)
         return new ActivePost(res.data)
     }
-    
+
     async removePost(postId) {
         const res = await api.delete(`api/posts/${postId}`)
         console.log(res.data)
         ProxyState.activePost = ProxyState.activePost.filter(p => p.id !== postId)
         return new ActivePost(res.data)
     }
-    
+
     async getPost() {
         try {
             const res = await api.get('api/posts')
@@ -33,7 +33,7 @@ class ActivePostsService {
             console.log(error)
         }
     }
-    
+
     async likes(id) {
         try {
             const res = await api.put(`api/posts/${id}/like`)
