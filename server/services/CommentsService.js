@@ -2,8 +2,8 @@ import { dbContext } from '../db/DbContext'
 import { BadRequest } from '../utils/Errors'
 
 class CommentsService {
-  async getAll() {
-    const comment = await dbContext.Comments.find().populate('creator')
+  async getAll(query = {}) {
+    const comment = await dbContext.Comments.find(query).populate('creator')
     return comment
   }
 
@@ -35,8 +35,8 @@ class CommentsService {
     if (original.creatorId.toString() !== userId) {
       throw new BadRequest('Dis no workee')
     }
-    await dbContext.Posts.findOneAndRemove({_id: commentId})
-}
+    await dbContext.Posts.findOneAndRemove({ _id: commentId })
+  }
 
 }
 

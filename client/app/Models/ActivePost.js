@@ -30,7 +30,7 @@ export class ActivePost {
             </div>
             <div class="row card-footer">
               <div class="mx-3 p-3 justify-content-between col-12 d-flex">${this.time} 
-              <button class="btn btn-primary mx-5" onclick="app.commentsController.drawComments()">COMMENTS</button>
+              <button class="btn btn-primary mx-5" onclick="app.commentsController.getComments('${this.id}')">COMMENTS</button>
               </div>
             </div>
           </div>
