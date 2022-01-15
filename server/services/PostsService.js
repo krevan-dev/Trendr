@@ -30,19 +30,16 @@ class PostsService {
     return original
   }
 
-  async like(postId, creatorId) {
+  async like(postId) {
     const original = await this.getById(postId)
     original.likes++
     await original.save()
     return original
   }
 
-  async dislike(updated) {
-    const original = await this.getById(updated.id)
-    if (original.toString() !== updated) {
-      throw new BadRequest('You wanted to dislike? Too bad.')
-    }
-    original.dislikes = updated.dislikes || original.dislikes
+  async dislike(postId) {
+    const original = await this.getById(postId)
+    original.dislikes++
     await original.save()
     return original
   }

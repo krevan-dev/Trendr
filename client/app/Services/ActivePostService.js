@@ -45,6 +45,18 @@ class ActivePostsService {
             console.log(error)
         }
     }
+    
+    async dislikes(id) {
+        try {
+            const res = await api.put(`api/posts/${id}/dislike`)
+            console.log(res)
+            let foundPostIndex = ProxyState.activePost.findIndex(p => p.id === id)
+            ProxyState.activePost.splice(foundPostIndex, 1, new ActivePost(res.data))
+            ProxyState.activePost = ProxyState.activePost
+        } catch (error) {
+            console.log(error)
+        }
+    }
 }
 
 export const activePostService = new ActivePostsService()

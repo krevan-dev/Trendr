@@ -76,9 +76,7 @@ export class PostsController extends BaseController {
   
   async dislike(req, res, next) {
     try {
-      req.body = req.userInfo.id
-      req.body.id = req.params.id
-      const updated = await postsService.edit(req.body)
+      const updated = await postsService.dislike(req.params.id, req.userInfo.id)
       return res.send(updated)
     } catch (error) {
       next(error)

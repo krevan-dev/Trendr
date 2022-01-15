@@ -40,4 +40,12 @@ export class ActivePostsController {
         }
     }
 
+    async dislikes(id) {
+        try {
+            await activePostService.dislikes(id)
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
 }
