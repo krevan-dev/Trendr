@@ -11,7 +11,6 @@ function drawActivePost() {
 export class ActivePostsController {
     constructor() {
         ProxyState.on('activePost', drawActivePost)
-        activePostService.getPost()
     }
 
     async getAll() {
@@ -43,7 +42,7 @@ export class ActivePostsController {
 
     async removePost(postId) {
         try {
-            const removedPost = await activePostService.removePost(postId)
+            await activePostService.removePost(postId)
             // TODO SWEET ALERT
         } catch (error) {
             console.log(error)

@@ -1,3 +1,5 @@
+import { ProxyState } from "../AppState.js"
+
 export class ActivePost {
   constructor(data) {
     this.profile = data.creator?.picture
@@ -7,6 +9,7 @@ export class ActivePost {
     this.likes = data.likes
     this.dislikes = data.dislikes
     this.createdAt = data.createdAt
+    this.creatorId = data.creatorId
   }
   get ATemplate() {
     return `
@@ -25,7 +28,7 @@ export class ActivePost {
               <div class="row">
                 <div class="mx-3 p-3 justify-content-between align-items-center col-8 d-flex">
                 <img src="${this.profile}" alt"" class="m-2" width="15%"><p>${this.title}</p>
-                <button class="btn btn-primary mx-5" onclick="app.commentsController.drawComments()">COMMENTS</button>
+                <button class="btn btn-primary mx-5 ${this.creatorId !== ProxyState.account.id ? 'visually-hidden' : ''}" onclick="app.activePostsController.removePost('${this.id}')">DELETE</button>
                 </div>
                 <div>
                 </div>

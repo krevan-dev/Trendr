@@ -1,6 +1,7 @@
 import { ProxyState } from '../AppState.js'
 import { audience, clientId, domain } from '../env.js'
 import { accountService } from './AccountService.js'
+import { activePostService } from './ActivePostService.js'
 import { api } from './AxiosService.js'
 // import { socketService } from './SocketService.js'
 
@@ -20,11 +21,12 @@ export const AuthService = Auth0Provider.initialize({
   }
 })
 
-AuthService.on(AuthService.AUTH_EVENTS.AUTHENTICATED, async() => {
+AuthService.on(AuthService.AUTH_EVENTS.AUTHENTICATED, async () => {
   api.defaults.headers.authorization = AuthService.bearer
   api.interceptors.request.use(refreshAuthToken)
   ProxyState.user = AuthService.user
   await accountService.getAccount()
+  await activePostService.getPost()
   // socketService.authenticate(AuthService.bearer)
 })
 

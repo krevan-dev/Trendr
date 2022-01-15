@@ -23,6 +23,7 @@ class ActivePostsService {
         return new ActivePost(res.data)
     }
 
+
     async getPost() {
         try {
             const res = await api.get('api/posts')
@@ -56,6 +57,8 @@ class ActivePostsService {
             console.log(error)
         }
     }
+
+
 }
 
 export const activePostService = new ActivePostsService()
