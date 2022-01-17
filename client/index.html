@@ -18,11 +18,11 @@
     <nav class="navbar navbar-dark bg-primary text-light">
       <a class="navbar-brand" href="#">
         <div class="d-flex align-items-center">
-        <img src="" height="45" alt="" loading="lazy">
-        <span class="mx-3 text-white bg-dark p-1">Trendr</span>
-        <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#exampleModal">
-          New Post
-        </button>
+          <img src="" height="45" alt="" loading="lazy">
+          <span class="mx-3 text-white bg-dark p-1">Trendr</span>
+          <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#exampleModal">
+            New Post
+          </button>
         </div>
       </a>
       <!-- NOTE MIGHT NOT NEED
@@ -87,32 +87,32 @@
     </div>
   </div>
 
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Create a new post...</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Create a new post...</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <form onsubmit="app.activePostsController.addPost()">
+          <div class="modal-body">
+            <div class="mb-3">
+              <label for="postTitle" class="form-label">Post Title:</label>
+              <input type="text" class="form-control" id="postTitle" aria-describedby="postTitle">
+            </div>
+            <div class="mb-3">
+              <label for="postContent" class="form-label">Post Url:</label>
+              <input type="text" class="form-control" id="postContent" aria-describedby="postContent">
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            <button class="btn btn-primary">Save changes</button>
+          </div>
+        </form>
       </div>
-      <form onsubmit="app.activePostsController.addPost()">
-        <div class="modal-body">
-          <div class="mb-3">
-            <label for="postTitle" class="form-label">Post Title:</label>
-            <input type="text" class="form-control" id="postTitle" aria-describedby="postTitle">
-          </div>
-          <div class="mb-3">
-            <label for="postContent" class="form-label">Post Content:</label>
-            <input type="text" class="form-control" id="postContent" aria-describedby="postContent">
-          </div>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-          <button class="btn btn-primary">Save changes</button>
-        </div>
-      </form>
     </div>
   </div>
-</div>
 
   <footer class="container-fluid bg-dark text-light">
     <div class="row text-center">
